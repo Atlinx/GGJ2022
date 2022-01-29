@@ -4,19 +4,11 @@ using UnityEngine;
 
 namespace Game.Input
 {
-    // TODO: Finish adding processing for aiming dir
     public class MouseKeyboardInput : InputBase
     {
-        // Start is called before the first frame update
-        void Start()
+        protected override void Update()
         {
-        
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-        
+            shipCore.InputValues.AimDir = (playerControls.Player.MouseAim.ReadValue<Vector2>() - (Vector2)shipCore.transform.position).normalized;
         }
     }
 }

@@ -13,6 +13,8 @@ namespace Game.Ship
             public Vector2 MovementDir;
             public float MovementRotation;
 
+            public Vector2 AimDir;
+
             public event Action OnAttackStart;
             public event Action OnAttackStop;
             public bool isAttackHeld;

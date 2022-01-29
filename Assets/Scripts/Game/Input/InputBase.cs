@@ -58,7 +58,7 @@ namespace Game.Input
             shipCore.InputValues.AttackStart();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             shipCore.InputValues.MovementDir = playerControls.Player.Move.ReadValue<Vector2>();
             shipCore.InputValues.MovementRotation = Mathf.Rad2Deg * Mathf.Atan2(shipCore.InputValues.MovementDir.y, shipCore.InputValues.MovementDir.x);
