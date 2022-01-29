@@ -12,7 +12,30 @@ namespace Game.Ship
         {
             public Vector2 MovementDir;
             public float MovementRotation;
-            public bool DoAttack;
+
+            public bool onAttackStop;
+            public bool onAttackStart;
+            public bool DoAttack
+            {
+                get
+                {
+                    return _doAttack;
+                }
+
+                set
+                {
+                    if (value)
+                    {
+                        onAttackStart = true;
+                    }
+                    else
+                    {
+                        onAttackStop = true;
+                    }
+                    _doAttack = value;
+                }
+            }
+            private bool _doAttack;
         }
 
         [HideInInspector]
@@ -28,26 +51,24 @@ namespace Game.Ship
         public Rigidbody2D Rigidbody2D;
         
 
-        private void Start()
-        {
-            weaponBase.Init(this);
-            movementBase.Init(this);
-        }
-
         private void Update()
         {
-            weaponBase.Update();
-            movementBase.Update();
+
+            if(weaponBase != null) weaponBase.Update(this);
+            if(movementBase != null) movementBase.Update(this);
+            
+            InputValues.onAttackStart = false;
+            InputValues.onAttackStop = false;
         }
 
         public void TriggerAbility1()
         {
-            if(abilityBase1 != null) abilityBase1.Trigger();
+            if(abilityBase1 != null) abilityBase1.Trigger(this);
         }
         
         public void TriggerAbility2()
         {
-            if(abilityBase2 != null) abilityBase2.Trigger();
+            if(abilityBase2 != null) abilityBase2.Trigger(this);
         }
 
 

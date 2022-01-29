@@ -4,11 +4,18 @@ namespace Game.Ship
 {
     public abstract class ShipAttachmentBase : ScriptableObject
     {
+        /*
         protected ShipCore _shipCoreInstance;
         
         public void Init(ShipCore core)
         {
             _shipCoreInstance = core;
         }
+
+        public bool IsInitated()
+        {
+            return _shipCoreInstance != null;
+        }
+        */
     }
 }

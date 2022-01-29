@@ -8,9 +8,9 @@ namespace Game.Ship.Movement
 
         public int Speed;
         
-        public override void Update()
+        public override void Update(ShipCore core)
         {
-            _shipCoreInstance.Rigidbody2D.velocity = Speed * _shipCoreInstance.InputValues.MovementDir;
+            core.Rigidbody2D.velocity = Speed * core.InputValues.MovementDir;
         }
     }
 }
