@@ -6,6 +6,4 @@ namespace Game.Ship.Movement
     {
         public abstract void Update();
     }
-        
-    }
 }
