@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-    public class InputBase : MonoBehaviour
+    public abstract class InputBase : MonoBehaviour
     {
         public PlayerControls playerControls;
         public ShipCore shipCore;
