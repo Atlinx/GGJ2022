@@ -5,6 +5,8 @@ namespace Game.Dimensions
 {
     public class DimensionCore : MonoBehaviour
     {
+        
+        
         public void SwapDimension(PlayerCore player)
         {
             player.SwapDimension();
