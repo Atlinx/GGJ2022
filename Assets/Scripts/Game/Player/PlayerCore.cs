@@ -15,6 +15,8 @@ namespace Game.Player
 
         public LayerMask dimension1CollisionMask;
         public LayerMask dimension2CollisionMask;
+
+        public GameObject InvertDimensionLayer;
         
         [HideInInspector] public int dimension1;
         [HideInInspector] public int dimension2;
@@ -53,10 +55,12 @@ namespace Game.Player
             if (dimensionID == 0)
             {
                 ChangeChildrenLayers(shipCore.gameObject, dimension1);
+                ChangeChildrenLayers(InvertDimensionLayer, dimension2);
             }
             else
             {
                 ChangeChildrenLayers(shipCore.gameObject, dimension2);
+                ChangeChildrenLayers(InvertDimensionLayer, dimension1);
             }
             
             

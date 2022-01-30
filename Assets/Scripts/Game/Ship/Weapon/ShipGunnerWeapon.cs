@@ -8,12 +8,13 @@ namespace Game.Ship.Weapon
     {
         public float shootingSpeed;
         public float bulletSpeed;
-
+        
         public float aliveTime;
         public int damage;
-    
+
         public GameObject bulletPrefab;
-    
+
+        public float explosiveImpact;
         public override void UpdateWeapon(ShipCore core)
         {
             if (core.InputValues.isAttackHeld)
@@ -34,13 +35,13 @@ namespace Game.Ship.Weapon
         public void Shoot(ShipCore core)
         {
             var spawnGunLocations = core.shipConfig.spawnGunLocations;
-        
+            core.OnWeaponFire?.Invoke();;
             for (int i = 0; i < spawnGunLocations.Length; i++)
             {
                 var bulletObject = Instantiate(bulletPrefab);
 
                 ShipBullets bullet = bulletObject.GetComponent<ShipBullets>();
-
+                bullet.explosiveImpact = explosiveImpact;
                 bullet.filter.layerMask = core.playerCore.GetCollisionLayerMask();
                 bullet.gameObject.layer = core.playerCore.GetDimensionLayer();
                 bullet.speed = bulletSpeed;
