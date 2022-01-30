@@ -11,8 +11,8 @@ namespace Game.Ship
         public struct ShipInputValues
         {
             public Vector2 MovementDir;
-            public float MovementRotation;
 
+            public float AimRotation;
             public Vector2 AimDir;
 
             public event Action OnAttackStart;
@@ -80,11 +80,11 @@ namespace Game.Ship
         {
             InputValues.OnAbility1Start += StartAbility1;
             InputValues.OnAbility1Stop += StopAbility1;
-            abilityBase1.Pressed = InputValues.isAbility1Held;
+            if (abilityBase1 != null) abilityBase1.Pressed = InputValues.isAbility1Held;
 
             InputValues.OnAbility1Start += StartAbility2;
             InputValues.OnAbility1Stop += StopAbility2;
-            abilityBase1.Pressed = InputValues.isAbility2Held;
+            if (abilityBase2 != null) abilityBase2.Pressed = InputValues.isAbility2Held;
         }
 
         private void Update()
@@ -92,7 +92,7 @@ namespace Game.Ship
             if(weaponBase != null) weaponBase.Update(this);
             if(movementBase != null) movementBase.Update(this);
             if (abilityBase1 != null) abilityBase1.Update(this);
-            if (abilityBase1 != null) abilityBase2.Update(this);
+            if (abilityBase2 != null) abilityBase2.Update(this);
         }
 
         public void StartAbility1()
