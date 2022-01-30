@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using Game.ObjectPooling;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.Ship.Weapon.Bullets
 {
@@ -12,7 +13,11 @@ namespace Game.Ship.Weapon.Bullets
         public ContactFilter2D filter;
         public ObjectPool objectPool;
 
+        public float explosiveImpact = 0;
+        
         public GameObject ignoreGameObject;
+
+        public UnityEvent OnHit;
         
         private Vector3 _lastPosition;
         private float currentAlive;
@@ -82,18 +87,24 @@ namespace Game.Ship.Weapon.Bullets
             if (colliderRG != null)
             {
                 var shipCore = colliderRG.gameObject.GetComponent<ShipCore>();
-
+                
+                colliderRG.AddForceAtPosition(new Vector2(explosiveImpact,explosiveImpact),this.transform.position, ForceMode2D.Impulse);
+                
                 if (shipCore != null)
                 {
                     shipCore.playerCore.healthCore.Damage(damage);
                 }
+                
+                
             }
-
+            
             OnFinished();
         }
 
         private void OnFinished()
         {
+            OnHit?.Invoke();
+            
             if (objectPool == null)
             {
                 Destroy(this.gameObject);

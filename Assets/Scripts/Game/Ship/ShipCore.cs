@@ -15,6 +15,8 @@ namespace Game.Ship
     public class ShipCore : MonoBehaviour
     {
         public UnityEvent OnWeaponFire;
+        public UnityEvent OnWeaponStart;
+        public UnityEvent OnWeaponEnd;
         
         [Serializable]
         public struct ShipConfig
