@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{697fe978-788c-4eb8-b647-e50cb81a3e75}">
+		<property name="assetPath">
+			<value>retro_blip_beep_13.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>1</value>
+		</property>
+		<property name="length">
+			<value>0.095986394557823124</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{963f17a2-316b-46bb-93db-d29226e0625f}</destination>
+		</relationship>
+	</object>
+</objects>
