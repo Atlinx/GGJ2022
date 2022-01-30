@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<objects serializationModel="Studio.02.02.00">
+	<object class="AudioFile" id="{6154134c-8341-4484-9102-a72c49b58a5e}">
+		<property name="assetPath">
+			<value>Light_Wand_Whoosh_3.wav</value>
+		</property>
+		<property name="frequencyInKHz">
+			<value>44.0999985</value>
+		</property>
+		<property name="channelCount">
+			<value>2</value>
+		</property>
+		<property name="length">
+			<value>1.3699773242630386</value>
+		</property>
+		<relationship name="masterAssetFolder">
+			<destination>{963f17a2-316b-46bb-93db-d29226e0625f}</destination>
+		</relationship>
+	</object>
+</objects>
