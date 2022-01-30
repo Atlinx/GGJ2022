@@ -4,14 +4,18 @@ using Game.Player;
 using Game.Ship.Abilities;
 using Game.Ship.Movement;
 using Game.Ship.Weapon;
+using Game.Ship.Weapon.Misc;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Serialization;
 
 namespace Game.Ship
 {
     public class ShipCore : MonoBehaviour
     {
+        public UnityEvent OnWeaponFire;
+        
         [Serializable]
         public struct ShipConfig
         {
@@ -21,6 +25,7 @@ namespace Game.Ship
 
             //If applicable
             public GameObject weaponGameObject;
+            public TriggerContainer meleeTriggerContainer;
         }
 
         public ShipConfig shipConfig;

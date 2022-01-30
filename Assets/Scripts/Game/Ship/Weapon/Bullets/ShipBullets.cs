@@ -27,6 +27,7 @@ namespace Game.Ship.Weapon.Bullets
         
         public void Update()
         {
+            if (this.transform == null) return;
             Vector3 lineDif = _lastPosition - this.transform.position;
             CheckCollisions(this.transform.position, lineDif);
             
@@ -53,6 +54,7 @@ namespace Game.Ship.Weapon.Bullets
 
                 for (int i = 0; i < results.Count; i++)
                 {
+                    if (results[i].collider.attachedRigidbody == null) continue;
                     if (results[i].collider.attachedRigidbody.gameObject == ignoreGameObject)
                     {
                         continue;

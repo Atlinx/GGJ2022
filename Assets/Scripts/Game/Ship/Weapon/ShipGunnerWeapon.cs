@@ -11,7 +11,7 @@ namespace Game.Ship.Weapon
 
         public float aliveTime;
         public int damage;
-    
+
         public GameObject bulletPrefab;
     
         public override void UpdateWeapon(ShipCore core)
@@ -34,7 +34,7 @@ namespace Game.Ship.Weapon
         public void Shoot(ShipCore core)
         {
             var spawnGunLocations = core.shipConfig.spawnGunLocations;
-        
+            core.OnWeaponFire?.Invoke();;
             for (int i = 0; i < spawnGunLocations.Length; i++)
             {
                 var bulletObject = Instantiate(bulletPrefab);
