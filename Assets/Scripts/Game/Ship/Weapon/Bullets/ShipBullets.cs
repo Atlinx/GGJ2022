@@ -65,7 +65,8 @@ namespace Game.Ship.Weapon.Bullets
                         closest = results[i];
                     }
                 }
-
+            
+                if (closest.collider.attachedRigidbody == null) return;
                 if (closest.collider.attachedRigidbody.gameObject != ignoreGameObject)
                 {
                     Collided(closest);
