@@ -286,8 +286,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipConfig:
     spawnGunLocations: []
-    lockMovementToForward: 0
-    SpeedMultiplier: 0
+    DisableMovement: 0
+    SpeedMultiplier: 1
     weaponGameObject: {fileID: 0}
   weaponBase: {fileID: 0}
   movementBase: {fileID: 11400000, guid: 9d1f8997ebb68d24a992d47290bf3d84, type: 2}

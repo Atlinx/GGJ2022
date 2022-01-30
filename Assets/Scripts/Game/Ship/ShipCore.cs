@@ -16,7 +16,7 @@ namespace Game.Ship
         public struct ShipConfig
         {
             public Transform[] spawnGunLocations;
-            public bool lockMovementToForward;
+            public bool DisableMovement;
             public float SpeedMultiplier;
 
             //If applicable
@@ -136,7 +136,7 @@ namespace Game.Ship
         private void Update()
         {
             if (weaponBase != null ) weaponBase.UpdateWeapon(this);
-            if (movementBase != null) movementBase.UpdateMove(this);
+            if (movementBase != null && !shipConfig.DisableMovement) movementBase.UpdateMove(this);
             if (abilityBase1 != null) abilityBase1.Update(this);
             if (abilityBase2 != null) abilityBase2.Update(this);
         }

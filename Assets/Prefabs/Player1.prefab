@@ -104,8 +104,8 @@ MonoBehaviour:
     spawnGunLocations:
     - {fileID: 1522614073372644793}
     - {fileID: 1522614072901235836}
-    lockMovementToForward: 0
-    SpeedMultiplier: 0
+    DisableMovement: 0
+    SpeedMultiplier: 1
     weaponGameObject: {fileID: 0}
   weaponBase: {fileID: 11400000, guid: fa540b2a93a89f649a3774b47303be27, type: 2}
   movementBase: {fileID: 11400000, guid: 9d1f8997ebb68d24a992d47290bf3d84, type: 2}
