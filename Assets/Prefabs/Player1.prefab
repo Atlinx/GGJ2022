@@ -1,5 +1,89 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1522873737
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1522873738}
+  - component: {fileID: 1522873740}
+  m_Layer: 7
+  m_Name: GhostShip
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1522873738
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522873737}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1.5390251, y: 1.5390251, z: 1.5390251}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1522614072555516012}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &1522873740
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1522873737}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 2100000, guid: 8878439204e58874ba372b925f430dbf, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 32de05e82bfac6a40b6b778331687b11, type: 3}
+  m_Color: {r: 0.07075471, g: 0.60162413, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 5.12, y: 5.12}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &352542672853043080
 GameObject:
   m_ObjectHideFlags: 0
@@ -14649,6 +14733,7 @@ Transform:
   - {fileID: 1522614073102852404}
   - {fileID: 1522614074082054889}
   - {fileID: 1522614073204204657}
+  - {fileID: 1522873738}
   - {fileID: 2906689694246757929}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -14701,7 +14786,7 @@ MonoBehaviour:
   dimension2CollisionMask:
     serializedVersion: 2
     m_Bits: 640
-  InvertDimensionLayer: {fileID: 0}
+  InvertDimensionLayer: {fileID: 1522873737}
   dimension1: 0
   dimension2: 0
 --- !u!114 &1522614072555516011
@@ -14752,7 +14837,7 @@ MonoBehaviour:
     weaponGameObject: {fileID: 0}
     meleeTriggerContainer: {fileID: 0}
   weaponBase: {fileID: 11400000, guid: fa540b2a93a89f649a3774b47303be27, type: 2}
-  movementBase: {fileID: 11400000, guid: 9d1f8997ebb68d24a992d47290bf3d84, type: 2}
+  movementBase: {fileID: 11400000, guid: 2fa0969be887e904a899beecd993f7c3, type: 2}
   abilityBase1: {fileID: 0}
   abilityBase2: {fileID: 0}
   Rigidbody2D: {fileID: 1522614072555516008}
@@ -14770,7 +14855,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 0
+  m_LinearDrag: 0.96
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -20071,7 +20156,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1522614072555516012}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &8251109903543163319
 ParticleSystem:
