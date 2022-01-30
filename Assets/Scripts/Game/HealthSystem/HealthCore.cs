@@ -30,6 +30,8 @@ namespace Game.HealthSystem
             {
                 CurrentHealth = 0;
                 OnDeathEvent?.Invoke();
+                
+                Debug.Log("Died");
             }
         }
 

@@ -6,6 +6,6 @@ namespace Game.Ship.Weapon
     {
 
 
-        public abstract void Update(ShipCore core);
+        public abstract void UpdateWeapon(ShipCore core);
     }
 }

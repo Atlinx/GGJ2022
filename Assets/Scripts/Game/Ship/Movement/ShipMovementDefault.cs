@@ -10,7 +10,7 @@ namespace Game.Ship.Movement
         
         public override void UpdateMove(ShipCore core)
         {
-            core.Rigidbody2D.velocity = Speed * core.InputValues.MovementDir;
+            core.Rigidbody2D.velocity = core.InputValues.MovementDir * (Speed * core.shipConfig.SpeedMultiplier);
 
             var euler = core.transform.eulerAngles;
 
