@@ -8,24 +8,47 @@ namespace Game.Input
 {
     public abstract class InputBase : MonoBehaviour
     {
-        public PlayerControls playerControls;
+        public PlayerInput playerInput;
         public ShipCore shipCore;
 
         public bool isAbilityOneHeld;
         public bool isAbilityTwoHeld;
 
+        public InputAction attackAction;
+        public InputAction ability1Action;
+        public InputAction ability2Action;
+        public InputAction moveAction;
+
+        protected virtual void Awake()
+        {
+            attackAction = playerInput.currentActionMap.FindAction("Attack");
+            ability1Action = playerInput.currentActionMap.FindAction("Ability 1");
+            ability2Action = playerInput.currentActionMap.FindAction("Ability 2");
+            moveAction = playerInput.currentActionMap.FindAction("Move");
+            Debug.Log("asdfsdf");
+        }
+
         private void OnEnable()
         {
-            playerControls.Enable();
+            //playerInput.currentActionMap.FindAction("Attack.performed += shipCore;
+            attackAction.started += OnAttackStart;
+            ability1Action.started += OnAbility1Start;
+            ability2Action.started += OnAbility2Start;
 
-            //playerControls.Player.Attack.performed += shipCore;
-            playerControls.Player.Attack.started += OnAttackStart;
-            playerControls.Player.Ability1.started += OnAbility1Start;
-            playerControls.Player.Ability2.started += OnAbility2Start;
+            attackAction.canceled += OnAttackStop;
+            ability1Action.canceled += OnAbility1Stop;
+            ability2Action.canceled += OnAbility2Stop;
+        }
 
-            playerControls.Player.Attack.canceled += OnAttackStop;
-            playerControls.Player.Ability1.canceled += OnAbility1Stop;
-            playerControls.Player.Ability2.canceled += OnAbility2Stop;
+        private void OnDisable()
+        {
+            attackAction.started -= OnAttackStart;
+            ability1Action.started -= OnAbility1Start;
+            ability2Action.started -= OnAbility2Start;
+
+            attackAction.canceled -= OnAttackStop;
+            ability1Action.canceled -= OnAbility1Stop;
+            ability2Action.canceled -= OnAbility2Stop;
         }
 
         private void OnAbility1Stop(InputAction.CallbackContext obj)
@@ -58,10 +81,10 @@ namespace Game.Input
             shipCore.InputValues.AttackStart();
         }
 
-        private void Update()
+        protected virtual void Update()
         {
-            shipCore.InputValues.MovementDir = playerControls.Player.Move.ReadValue<Vector2>();
-            shipCore.InputValues.MovementRotation = Mathf.Rad2Deg * Mathf.Atan2(shipCore.InputValues.MovementDir.y, shipCore.InputValues.MovementDir.x);
+            shipCore.InputValues.MovementDir = moveAction.ReadValue<Vector2>();
+            shipCore.InputValues.AimRotation = Mathf.Rad2Deg * Mathf.Atan2(shipCore.InputValues.AimDir.y, shipCore.InputValues.AimDir.x);
         }
     }
 

@@ -1,22 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace Game.Input
 {
-    // TODO: Finish adding processing for aiming dir
     public class MouseKeyboardInput : InputBase
     {
-        // Start is called before the first frame update
-        void Start()
+        protected InputAction mouseAimAction;
+
+        protected override void Awake()
         {
-        
+            base.Awake();
+            mouseAimAction = playerInput.currentActionMap.FindAction("Mouse Aim");
         }
 
-        // Update is called once per frame
-        void Update()
+        protected override void Update()
         {
-        
+            shipCore.InputValues.AimDir = (mouseAimAction.ReadValue<Vector2>() - (Vector2)shipCore.transform.position).normalized;
         }
     }
 }
