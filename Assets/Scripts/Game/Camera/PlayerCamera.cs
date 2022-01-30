@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,7 +10,12 @@ public class PlayerCamera : MonoBehaviour
     public LayerMask dimensionTwoMask;
 
     public Transform Target;
-    
+
+    private void Start()
+    {
+        SwapRender(0);
+    }
+
     public void SwapRender(int id)
     {
         if (id == 0)

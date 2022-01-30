@@ -17,8 +17,13 @@ namespace Game.Input
 
         protected override void Update()
         {
+            if (joyAimAction.triggered)
+            {
+                var aim = joyAimAction.ReadValue<Vector2>();
+                if(aim.magnitude > 0.6) shipCore.InputValues.AimDir = aim;
+            }
+            
             base.Update();
-            shipCore.InputValues.AimDir = joyAimAction.ReadValue<Vector2>();
         }
     }
 }

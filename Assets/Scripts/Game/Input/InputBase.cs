@@ -18,6 +18,7 @@ namespace Game.Input
         public InputAction ability1Action;
         public InputAction ability2Action;
         public InputAction moveAction;
+        public InputAction dimensionAction;
 
         protected virtual void Awake()
         {
@@ -25,7 +26,8 @@ namespace Game.Input
             ability1Action = playerInput.currentActionMap.FindAction("Ability 1");
             ability2Action = playerInput.currentActionMap.FindAction("Ability 2");
             moveAction = playerInput.currentActionMap.FindAction("Move");
-            Debug.Log("asdfsdf");
+            dimensionAction = playerInput.currentActionMap.FindAction("Dimension");
+            //Debug.Log("asdfsdf");
         }
 
         private void OnEnable()
@@ -34,10 +36,12 @@ namespace Game.Input
             attackAction.started += OnAttackStart;
             ability1Action.started += OnAbility1Start;
             ability2Action.started += OnAbility2Start;
+            dimensionAction.started += OnDimensionStart;
 
             attackAction.canceled += OnAttackStop;
             ability1Action.canceled += OnAbility1Stop;
             ability2Action.canceled += OnAbility2Stop;
+            dimensionAction.started += OnDimensionStop;
         }
 
         private void OnDisable()
@@ -45,10 +49,12 @@ namespace Game.Input
             attackAction.started -= OnAttackStart;
             ability1Action.started -= OnAbility1Start;
             ability2Action.started -= OnAbility2Start;
+            dimensionAction.started += OnDimensionStart;
 
             attackAction.canceled -= OnAttackStop;
             ability1Action.canceled -= OnAbility1Stop;
             ability2Action.canceled -= OnAbility2Stop;
+            dimensionAction.started += OnDimensionStop;
         }
 
         private void OnAbility1Stop(InputAction.CallbackContext obj)
@@ -79,6 +85,16 @@ namespace Game.Input
         private void OnAttackStart(InputAction.CallbackContext obj)
         {
             shipCore.InputValues.AttackStart();
+        }
+
+        private void OnDimensionStart(InputAction.CallbackContext obj)
+        {
+            shipCore.InputValues.DimensionStart();
+        }
+
+        private void OnDimensionStop(InputAction.CallbackContext obj)
+        {
+            shipCore.InputValues.DimensionStop();
         }
 
         protected virtual void Update()

@@ -17,7 +17,11 @@ namespace Game.Input
 
         protected override void Update()
         {
-            shipCore.InputValues.AimDir = (mouseAimAction.ReadValue<Vector2>() - (Vector2)shipCore.transform.position).normalized;
+            shipCore.InputValues.AimDir = (mouseAimAction.ReadValue<Vector2>() - 
+                                           (Vector2)shipCore.playerCore.playerCamera.camera.WorldToScreenPoint((Vector2)shipCore.transform.position)
+                                           ).normalized;
+            base.Update();
+
         }
     }
 }

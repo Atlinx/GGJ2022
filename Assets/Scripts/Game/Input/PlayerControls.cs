@@ -80,6 +80,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Dimension"",
+                    ""type"": ""Button"",
+                    ""id"": ""ce8d8089-be8e-49c6-8edd-b64887b8bd5a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -236,6 +245,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Mouse Aim"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c3528bdc-7f9d-48c4-88d1-bc560a63e776"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""Dimension"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0f6d551d-3117-4d26-847d-7a58683f7b81"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse Keyboard"",
+                    ""action"": ""Dimension"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -278,6 +309,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
         m_Player_JoyAim = m_Player.FindAction("Joy Aim", throwIfNotFound: true);
         m_Player_MouseAim = m_Player.FindAction("Mouse Aim", throwIfNotFound: true);
+        m_Player_Dimension = m_Player.FindAction("Dimension", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -343,6 +375,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_Move;
     private readonly InputAction m_Player_JoyAim;
     private readonly InputAction m_Player_MouseAim;
+    private readonly InputAction m_Player_Dimension;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -353,6 +386,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @Move => m_Wrapper.m_Player_Move;
         public InputAction @JoyAim => m_Wrapper.m_Player_JoyAim;
         public InputAction @MouseAim => m_Wrapper.m_Player_MouseAim;
+        public InputAction @Dimension => m_Wrapper.m_Player_Dimension;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -380,6 +414,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MouseAim.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseAim;
                 @MouseAim.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseAim;
                 @MouseAim.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnMouseAim;
+                @Dimension.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDimension;
+                @Dimension.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDimension;
+                @Dimension.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDimension;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -402,6 +439,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @MouseAim.started += instance.OnMouseAim;
                 @MouseAim.performed += instance.OnMouseAim;
                 @MouseAim.canceled += instance.OnMouseAim;
+                @Dimension.started += instance.OnDimension;
+                @Dimension.performed += instance.OnDimension;
+                @Dimension.canceled += instance.OnDimension;
             }
         }
     }
@@ -432,5 +472,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnMove(InputAction.CallbackContext context);
         void OnJoyAim(InputAction.CallbackContext context);
         void OnMouseAim(InputAction.CallbackContext context);
+        void OnDimension(InputAction.CallbackContext context);
     }
 }

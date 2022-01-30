@@ -6,10 +6,16 @@ namespace Game.Ship.Movement
     public class ShipMovementDefault : ShipMovementBase
     {
         public int Speed;
+        public int RotSpeed;
         
-        public override void Update(ShipCore core)
+        
+        public override void UpdateMove(ShipCore core)
         {
-            core.Rigidbody2D.velocity = Speed * core.InputValues.MovementDir;
+            core.Rigidbody2D.velocity = core.InputValues.MovementDir * (Speed * core.shipConfig.SpeedMultiplier);
+            
+            var euler = core.transform.eulerAngles;
+            
+            core.transform.eulerAngles = new Vector3(euler.x, euler.y, Mathf.LerpAngle(euler.z, core.InputValues.AimRotation - 90, Time.deltaTime * RotSpeed));
         }
     }
 }

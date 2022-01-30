@@ -1,3 +1,4 @@
+using System;
 using Game.Player;
 using UnityEngine;
 
@@ -5,8 +6,15 @@ namespace Game.Dimensions
 {
     public class DimensionCore : MonoBehaviour
     {
-        
-        
+        //Did not want to do this, but timeeee
+        public static DimensionCore _instance;
+
+        public void Start()
+        {
+            _instance = this;
+        }
+
+
         public void SwapDimension(PlayerCore player)
         {
             player.SwapDimension();
