@@ -459,6 +459,12 @@ MonoBehaviour:
   OnWeaponFire:
     m_PersistentCalls:
       m_Calls: []
+  OnWeaponStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponEnd:
+    m_PersistentCalls:
+      m_Calls: []
   shipConfig:
     spawnGunLocations: []
     DisableMovement: 0
@@ -471,6 +477,7 @@ MonoBehaviour:
   abilityBase2: {fileID: 0}
   Rigidbody2D: {fileID: 3539346511470934855}
   playerCore: {fileID: 0}
+  DimensionSwapCooldown: 2
 --- !u!114 &3539346511470934906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -650,6 +657,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: 7df186cf-a804-4bbb-a92c-a7b3211ca6e9
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  pauseAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

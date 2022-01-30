@@ -56,7 +56,7 @@ namespace Game.Ship.Weapon
                         playerCore.healthCore.Damage(damageAmount);
                     }
 
-                    currentDamageCooldown = damageAmount;
+                    currentDamageCooldown = damageCooldown;
                 }
 
             }

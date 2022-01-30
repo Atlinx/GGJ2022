@@ -67,5 +67,5 @@ MonoBehaviour:
   speedMultiplier: 2.12
   sawRotationSpeed: 300
   attackMoveSpeed: 8.91
-  damageCooldown: 0.025
+  damageCooldown: 0.05
   damageAmount: 2

@@ -146,10 +146,22 @@ namespace Game.Ship
             if (movementBase != null && !shipConfig.DisableMovement) movementBase.UpdateMove(this);
             if (abilityBase1 != null) abilityBase1.Update(this);
             if (abilityBase2 != null) abilityBase2.Update(this);
+
+
+            currentDimensionSwapCooldown -= Time.deltaTime;
+            currentDimensionSwapCooldown = Mathf.Clamp(currentDimensionSwapCooldown, 0, DimensionSwapCooldown);
         }
 
+        public float DimensionSwapCooldown = 0;
+        private float currentDimensionSwapCooldown = 0;
         public void SwapDimensions()
         {
+            if (currentDimensionSwapCooldown != 0)
+            {
+                return;
+            }
+
+            currentDimensionSwapCooldown = DimensionSwapCooldown;
             // TODO : Check cooldown before execution;
             DimensionCore._instance.SwapDimension(this.playerCore);
         }

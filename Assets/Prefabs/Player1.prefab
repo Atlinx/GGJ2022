@@ -14853,6 +14853,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnWeaponStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnWeaponEnd:
+    m_PersistentCalls:
+      m_Calls: []
   shipConfig:
     spawnGunLocations:
     - {fileID: 1522614073372644793}
@@ -14867,6 +14873,7 @@ MonoBehaviour:
   abilityBase2: {fileID: 0}
   Rigidbody2D: {fileID: 1522614072555516008}
   playerCore: {fileID: 0}
+  DimensionSwapCooldown: 2
 --- !u!50 &1522614072555516008
 Rigidbody2D:
   serializedVersion: 4
@@ -15246,6 +15253,15 @@ MonoBehaviour:
     m_Type: 0
     m_ExpectedControlType: 
     m_Id: c655fe67-e5cd-4db9-9ae0-b5fffe2c4dc2
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  pauseAction:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
     m_Processors: 
     m_Interactions: 
     m_SingletonActionBindings: []

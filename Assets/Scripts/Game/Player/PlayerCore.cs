@@ -1,4 +1,5 @@
 using System;
+using Game.Dimensions;
 using Game.HealthSystem;
 using Game.Ship;
 using UnityEngine;
@@ -92,6 +93,8 @@ namespace Game.Player
         {
             Debug.Log("Player Died");
             healthCore.ResetHealth();
+
+            this.transform.position = DimensionCore._instance.GetRandomRespawnPoint();
         }
     }
 }

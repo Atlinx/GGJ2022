@@ -89,6 +89,15 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenu"",
+                    ""type"": ""Button"",
+                    ""id"": ""a81d090f-4bb3-4724-8c49-fd690d2d6425"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,28 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                     ""action"": ""Dimension"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8a41671-d602-4ecd-b913-05ed9406edd3"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Mouse Keyboard"",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4525a163-0b11-4af3-82d8-82f872f3f51f"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""PauseMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -310,6 +341,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         m_Player_JoyAim = m_Player.FindAction("Joy Aim", throwIfNotFound: true);
         m_Player_MouseAim = m_Player.FindAction("Mouse Aim", throwIfNotFound: true);
         m_Player_Dimension = m_Player.FindAction("Dimension", throwIfNotFound: true);
+        m_Player_PauseMenu = m_Player.FindAction("PauseMenu", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -376,6 +408,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
     private readonly InputAction m_Player_JoyAim;
     private readonly InputAction m_Player_MouseAim;
     private readonly InputAction m_Player_Dimension;
+    private readonly InputAction m_Player_PauseMenu;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -387,6 +420,7 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         public InputAction @JoyAim => m_Wrapper.m_Player_JoyAim;
         public InputAction @MouseAim => m_Wrapper.m_Player_MouseAim;
         public InputAction @Dimension => m_Wrapper.m_Player_Dimension;
+        public InputAction @PauseMenu => m_Wrapper.m_Player_PauseMenu;
         public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -417,6 +451,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dimension.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDimension;
                 @Dimension.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDimension;
                 @Dimension.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnDimension;
+                @PauseMenu.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseMenu;
+                @PauseMenu.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnPauseMenu;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -442,6 +479,9 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
                 @Dimension.started += instance.OnDimension;
                 @Dimension.performed += instance.OnDimension;
                 @Dimension.canceled += instance.OnDimension;
+                @PauseMenu.started += instance.OnPauseMenu;
+                @PauseMenu.performed += instance.OnPauseMenu;
+                @PauseMenu.canceled += instance.OnPauseMenu;
             }
         }
     }
@@ -473,5 +513,6 @@ public partial class @PlayerControls : IInputActionCollection2, IDisposable
         void OnJoyAim(InputAction.CallbackContext context);
         void OnMouseAim(InputAction.CallbackContext context);
         void OnDimension(InputAction.CallbackContext context);
+        void OnPauseMenu(InputAction.CallbackContext context);
     }
 }

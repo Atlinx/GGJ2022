@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Game.Dimensions;
 using UnityEngine;
 using Game.Ship;
 using UnityEngine.InputSystem;
@@ -19,6 +20,7 @@ namespace Game.Input
         public InputAction ability2Action;
         public InputAction moveAction;
         public InputAction dimensionAction;
+        public InputAction pauseAction;
 
         protected virtual void Awake()
         {
@@ -27,6 +29,7 @@ namespace Game.Input
             ability2Action = playerInput.currentActionMap.FindAction("Ability 2");
             moveAction = playerInput.currentActionMap.FindAction("Move");
             dimensionAction = playerInput.currentActionMap.FindAction("Dimension");
+            pauseAction = playerInput.currentActionMap.FindAction("PauseMenu");
             //Debug.Log("asdfsdf");
         }
 
@@ -55,6 +58,14 @@ namespace Game.Input
             ability1Action.canceled -= OnAbility1Stop;
             ability2Action.canceled -= OnAbility2Stop;
             dimensionAction.started += OnDimensionStop;
+        }
+
+        private void OnPauseMenuStart(InputAction.CallbackContext obj)
+        {
+            if (PauseMenu._instance)
+            {
+                
+            }
         }
 
         private void OnAbility1Stop(InputAction.CallbackContext obj)
