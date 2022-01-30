@@ -87,8 +87,10 @@ namespace Game.Ship.Weapon.Bullets
             if (colliderRG != null)
             {
                 var shipCore = colliderRG.gameObject.GetComponent<ShipCore>();
+
+                Vector2 dir = obj.collider.transform.position - this.transform.position;
                 
-                colliderRG.AddForceAtPosition(new Vector2(explosiveImpact,explosiveImpact),this.transform.position, ForceMode2D.Impulse);
+                colliderRG.AddForce(dir * explosiveImpact, ForceMode2D.Impulse);
                 
                 if (shipCore != null)
                 {

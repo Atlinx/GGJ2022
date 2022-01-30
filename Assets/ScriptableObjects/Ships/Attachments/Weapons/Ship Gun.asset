@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d072599da8c0c746a9177b376f4e211, type: 3}
   m_Name: Ship Gun
   m_EditorClassIdentifier: 
-  shootingSpeed: 0.6
-  bulletSpeed: 40
+  shootingSpeed: 0.2
+  bulletSpeed: 50.1
   aliveTime: 5
   damage: 5
   bulletPrefab: {fileID: 4304023511725630208, guid: 0134b0dc70183f248a53f9c01c09d8ed, type: 3}
-  explosiveImpact: 1.12
+  explosiveImpact: 50

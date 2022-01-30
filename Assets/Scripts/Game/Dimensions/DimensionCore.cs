@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Game.Player;
 using UnityEngine;
 using UnityEngine.Events;
@@ -11,11 +12,17 @@ namespace Game.Dimensions
         //Did not want to do this, but timeeee
         public static DimensionCore _instance;
 
+        public List<PlayerCore> players;
+        
         public UnityEvent OnPlayerDimensionSwap;
+        public UnityEvent OnPlayersInDim1Swap;
+        public UnityEvent OnPlayersInDim2Swap;
+        public UnityEvent OnPlayersMixed;
 
         public Transform RespawnLocations;
         public void Start()
         {
+            OnPlayersInDim1Swap?.Invoke();
             _instance = this;
         }
         
@@ -25,7 +32,27 @@ namespace Game.Dimensions
             
             player.SwapDimension();
             OnPlayerDimensionSwap?.Invoke();
+
+
+            int currentDimension = players[0].dimensionID;
             
+            foreach(var _player in players)
+            {
+                if (currentDimension != _player.dimensionID)
+                {
+                    //OnPlayersMixed?.Invoke();
+                    return;
+                }
+            }
+
+            if (currentDimension == 0)
+            {
+                OnPlayersInDim1Swap?.Invoke();
+            }else if (currentDimension == 1)
+            {
+                OnPlayersInDim2Swap?.Invoke();
+            }
+
             //Maybe keep this wrapper open for events, so on swap play sound fx?
         }
 
