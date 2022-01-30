@@ -1,8 +1,12 @@
 using System;
+using Game.Dimensions;
+using Game.Player;
 using Game.Ship.Abilities;
 using Game.Ship.Movement;
 using Game.Ship.Weapon;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Game.Ship
 {
@@ -27,6 +31,10 @@ namespace Game.Ship
             public event Action OnAbility2Stop;
             public bool isAbility2Held;
 
+            public event Action OnDimensionStart;
+            public event Action OnDimensionStop;
+            public bool isDimensionHeld;
+            
             public void AttackStart()
             {
                 OnAttackStart?.Invoke();
@@ -48,7 +56,7 @@ namespace Game.Ship
             public void Ability1Stop()
             {
                 OnAbility1Stop?.Invoke();
-                isAbility1Held = true;
+                isAbility1Held = false;
             }
 
             public void Ability2Start()
@@ -60,7 +68,19 @@ namespace Game.Ship
             public void Ability2Stop()
             {
                 OnAbility2Stop?.Invoke();
-                isAbility2Held = true;
+                isAbility2Held = false;
+            }
+
+            public void DimensionStart()
+            {
+                OnDimensionStart?.Invoke();
+                isDimensionHeld = true;
+            }
+
+            public void DimensionStop()
+            {
+                OnDimensionStop?.Invoke();
+                isDimensionHeld = false;
             }
         }
 
@@ -76,6 +96,8 @@ namespace Game.Ship
         [Header("Components")]
         public Rigidbody2D Rigidbody2D;
 
+        [FormerlySerializedAs("core")] [HideInInspector]
+        public PlayerCore playerCore;
         private void Awake()
         {
             InputValues.OnAbility1Start += StartAbility1;
@@ -85,16 +107,25 @@ namespace Game.Ship
             InputValues.OnAbility1Start += StartAbility2;
             InputValues.OnAbility1Stop += StopAbility2;
             if (abilityBase2 != null) abilityBase2.Pressed = InputValues.isAbility2Held;
+
+            InputValues.OnDimensionStart += SwapDimensions;
+
         }
 
         private void Update()
         {
-            if(weaponBase != null) weaponBase.Update(this);
-            if(movementBase != null) movementBase.Update(this);
+            if (weaponBase != null) weaponBase.Update(this);
+            if (movementBase != null) movementBase.UpdateMove(this);
             if (abilityBase1 != null) abilityBase1.Update(this);
             if (abilityBase2 != null) abilityBase2.Update(this);
         }
 
+        public void SwapDimensions()
+        {
+            // TODO : Check cooldown before execution;
+            DimensionCore._instance.SwapDimension(this.playerCore);
+        }
+        
         public void StartAbility1()
         {
             if (abilityBase1 != null) abilityBase1.Start(this);

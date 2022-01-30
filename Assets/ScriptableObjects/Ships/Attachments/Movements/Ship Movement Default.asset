@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96aff9199b18481291db1ba8d1448e25, type: 3}
   m_Name: Ship Movement Default
   m_EditorClassIdentifier: 
-  Speed: 0
+  Speed: 5
+  RotSpeed: 1000
