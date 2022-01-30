@@ -19,6 +19,8 @@ namespace Game.Ship.Weapon
         private float currentDamageCooldown;
         private float currentSpeedRampUpTime = 0;
         private float lastAimRotation;
+        private bool lastAttackHeld;
+        
         public override void UpdateWeapon(ShipCore core)
         {
             
@@ -26,6 +28,11 @@ namespace Game.Ship.Weapon
             
             if (core.InputValues.isAttackHeld)
             {
+                if (lastAttackHeld != core.InputValues.isAttackHeld)
+                {
+                    core.OnWeaponStart?.Invoke();
+                }
+                
                 core.shipConfig.DisableMovement = true;
                 core.shipConfig.weaponGameObject.transform.Rotate(new Vector3(0,0,1),  core.shipConfig.SpeedMultiplier * sawRotationSpeed * Time.deltaTime);
 
@@ -35,6 +42,9 @@ namespace Game.Ship.Weapon
 
 
                 currentDamageCooldown -= Time.deltaTime;
+                
+                
+                core.OnWeaponFire?.Invoke();;
 
                 if (currentDamageCooldown <= 0)
                 {
@@ -43,7 +53,6 @@ namespace Game.Ship.Weapon
                         var playerCore = triggered.GetComponent<PlayerCore>();
                         if (playerCore == null) continue;
 
-                        core.OnWeaponFire?.Invoke();;
                         playerCore.healthCore.Damage(damageAmount);
                     }
 
@@ -53,11 +62,17 @@ namespace Game.Ship.Weapon
             }
             else
             {
+                if (lastAttackHeld != core.InputValues.isAttackHeld)
+                {
+                    core.OnWeaponEnd?.Invoke();
+                }
                 core.shipConfig.DisableMovement = false;
                 lastAimRotation = core.InputValues.AimRotation - 90;
                 currentDamageCooldown = damageCooldown;
                 currentSpeedRampUpTime = 0;
             }
+            
+            lastAttackHeld = core.InputValues.isAttackHeld;
 
             currentSpeedRampUpTime = Mathf.Clamp(currentSpeedRampUpTime, 0, speedRampUpTime);
 

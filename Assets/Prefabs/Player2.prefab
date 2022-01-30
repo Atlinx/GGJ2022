@@ -547,11 +547,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e31007c600236e74380d0fc9a11f7efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 30
-  CurrentHealth: 30
+  MaxHealth: 90
+  CurrentHealth: 90
   OnDeathEvent:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3539346511470934852}
+        m_TargetAssemblyTypeName: Game.Player.PlayerCore, Assembly-CSharp
+        m_MethodName: KillPlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   OnDamageEvent:
     m_PersistentCalls:
       m_Calls:
