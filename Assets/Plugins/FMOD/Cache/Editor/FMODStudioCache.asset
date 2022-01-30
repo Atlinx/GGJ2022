@@ -42,7 +42,7 @@ MonoBehaviour:
   Path: DuelFMODProject/Build/Desktop/Master.strings.bank
   Name: Master.strings
   StudioPath: bank:/Master.strings
-  lastModified: 637791058437679475
+  lastModified: 637790966885046280
   FileSizes:
   - Name: 
     Value: 1170
@@ -251,7 +251,7 @@ MonoBehaviour:
   Path: DuelFMODProject/Build/Desktop/Master.bank
   Name: Master
   StudioPath: bank:/Master
-  lastModified: 637791058437659797
+  lastModified: 637790966885036274
   FileSizes: []
   Exists: 1
 --- !u!114 &-77912768397738654
@@ -313,7 +313,7 @@ MonoBehaviour:
   - {fileID: -106445969758128703}
   StringsBanks:
   - {fileID: -5016575559072342598}
-  cacheTime: 637791058437679475
+  cacheTime: 637790966885046280
   cacheVersion: 10
 --- !u!114 &1250672846807683117
 MonoBehaviour:
