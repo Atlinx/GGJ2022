@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Camera camera;
+    public LayerMask dimensionOneMask;
+    public LayerMask dimensionTwoMask;
+
+    public Transform Target;
+    
+    public void SwapRender(int id)
     {
-        
+        if (id == 0)
+        {
+            camera.cullingMask = dimensionOneMask;
+        }
+        else if (id == 1)
+        {
+            camera.cullingMask = dimensionTwoMask;
+        }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        Vector3 position = Target.transform.position;
+        camera.transform.position = new Vector3(position.x, position.y, camera.transform.position.z);
     }
 }

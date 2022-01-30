@@ -27,6 +27,9 @@ namespace Game.Player
                 dimensionID = 0;
                 shipCore.gameObject.layer = DimensionCollision1;
             }
+            
+            
+            playerCamera.SwapRender(dimensionID);
 
         }
     }
