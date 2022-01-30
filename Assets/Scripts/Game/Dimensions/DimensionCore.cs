@@ -17,7 +17,6 @@ namespace Game.Dimensions
 
         public void SwapDimension(PlayerCore player)
         {
-            Debug.Log("Swapping Dimensions for " + player.name);
             player.SwapDimension();
             
             //Maybe keep this wrapper open for events, so on swap play sound fx?

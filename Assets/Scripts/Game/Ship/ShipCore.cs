@@ -12,8 +12,29 @@ namespace Game.Ship
 {
     public class ShipCore : MonoBehaviour
     {
+        [Serializable]
+        public struct ShipConfig
+        {
+            public Transform[] spawnGunLocations;
+            public bool DisableMovement;
+            public float SpeedMultiplier;
+
+            //If applicable
+            public GameObject weaponGameObject;
+        }
+
+        public ShipConfig shipConfig;
+        
+        public struct ShipTempValues
+        {
+            public float weaponCooldown;
+        }
+
+        
+        public ShipTempValues tempValues;
         public struct ShipInputValues
         {
+
             public Vector2 MovementDir;
 
             public float AimRotation;
@@ -114,8 +135,8 @@ namespace Game.Ship
 
         private void Update()
         {
-            if (weaponBase != null) weaponBase.Update(this);
-            if (movementBase != null) movementBase.UpdateMove(this);
+            if (weaponBase != null ) weaponBase.UpdateWeapon(this);
+            if (movementBase != null && !shipConfig.DisableMovement) movementBase.UpdateMove(this);
             if (abilityBase1 != null) abilityBase1.Update(this);
             if (abilityBase2 != null) abilityBase2.Update(this);
         }
